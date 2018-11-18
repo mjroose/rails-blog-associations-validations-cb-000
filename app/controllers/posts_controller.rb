@@ -45,6 +45,7 @@ class PostsController < ApplicationController
       if @post.update(post_params)
         add_tags_from_params
         @post.save
+        binding.pry
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { head :no_content }
       else
