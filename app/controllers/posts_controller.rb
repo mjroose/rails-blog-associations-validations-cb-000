@@ -81,7 +81,7 @@ class PostsController < ApplicationController
           tag = Tag.find(tag_id)
 
           if tag
-            tags << tag
+            self.tags << tag
           end
         end
       end
