@@ -42,6 +42,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
+      if post_params.has_key?(:tag_ids)
       if @post.update(post_params)
         @post.add_tags_from_params
         @post.save
@@ -89,6 +90,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:name, :content, :tags)
+      params.require(:post).permit(:name, :content, :tag_ids)
     end
 end
