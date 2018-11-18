@@ -22,10 +22,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :tags %><br>
-    <% @tags.each do |tag| %>
-      <%= f.check_box tag.name %><br>
-    <% end %>
+    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
   </div>
 
   <div class="actions">
