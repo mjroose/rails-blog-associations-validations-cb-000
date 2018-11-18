@@ -50,8 +50,6 @@ class PostsController < ApplicationController
       end
 
       if @post.update(post_params.merge(tags: tags))
-        @post.add_tags_from_params
-        @post.save
         binding.pry
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { head :no_content }
