@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        add_tags_from_params
+        @post.add_tags_from_params
         @post.save
         binding.pry
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
