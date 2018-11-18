@@ -45,12 +45,11 @@ class PostsController < ApplicationController
       tags = []
       if post_params.has_key?(:tag_ids)
         tags = post_params[:tag_ids].collect do |tag_id|
-          Tag.find(tag_id)
+          Tag.find_by(id: tag_id)
         end.compact
       end
 
       if @post.update(post_params.merge(tags: tags))
-        binding.pry
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { head :no_content }
       else
