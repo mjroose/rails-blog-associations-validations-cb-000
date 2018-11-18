@@ -73,6 +73,14 @@ class PostsController < ApplicationController
       @tags = Tag.all
     end
 
+    def add_tags_from_params
+      if params.has_key?(:tags)
+        params[:tags].each do |tag_id|
+          tags << Tag.find(tag_id)
+        end
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:name, :content, :tags)
