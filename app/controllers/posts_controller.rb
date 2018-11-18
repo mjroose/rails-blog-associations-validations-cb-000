@@ -79,7 +79,7 @@ class PostsController < ApplicationController
       if params[:post].has_key?(:tags)
         params[:post][:tags].each do |tag_id|
           tag = Tag.find(tag_id)
-
+          binding.pry
           if tag
             self.tags << tag
           end
