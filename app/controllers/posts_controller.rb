@@ -49,7 +49,7 @@ class PostsController < ApplicationController
         end.compact
       end
 
-      if @post.update(post_params.merge(tags))
+      if @post.update(post_params.merge(tags: tags))
         @post.add_tags_from_params
         @post.save
         binding.pry
