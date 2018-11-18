@@ -42,7 +42,13 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
+      tags = []
       if post_params.has_key?(:tag_ids)
+        tags = post_params[:tag_ids].collect do |tag_id|
+          Tag.find(tag_id)
+        end.compact
+      end
+
       if @post.update(post_params)
         @post.add_tags_from_params
         @post.save
@@ -74,18 +80,6 @@ class PostsController < ApplicationController
 
     def set_tags
       @tags = Tag.all
-    end
-
-    def add_tags_from_params
-      if params[:post].has_key?(:tags)
-        params[:post][:tags].each do |tag_id|
-          tag = Tag.find(tag_id)
-          binding.pry
-          if tag
-            self.tags << tag
-          end
-        end
-      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
