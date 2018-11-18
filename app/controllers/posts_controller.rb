@@ -76,7 +76,7 @@ class PostsController < ApplicationController
     end
 
     def add_tags_from_params
-      if params.has_key?(:tags)
+      if params[:post].has_key?(:tags)
         params[:tags].each do |tag_id|
           tag = Tag.find(tag_id)
 
